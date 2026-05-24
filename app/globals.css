@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* Havenora Care — design tokens (source of truth: assets/7.png)       */
+/* ------------------------------------------------------------------ */
+@theme {
+  /* Greens */
+  --color-forest: #3d5240;
+  --color-forest-deep: #465032;
+  --color-sage: #8c907f;
+  --color-sage-light: #bdbfb4;
+
+  /* Lavenders / purple */
+  --color-lavender: #6f509b;
+  --color-purple: #795c9a;
+  --color-lavender-soft: #b5a5c1;
+
+  /* Neutrals */
+  --color-cream: #fbf6ee;
+  --color-ivory: #fffcf7;
+  --color-sand: #e2ddbc;
+  --color-beige: #eeddc8;
+  --color-ink: #3a3a36;
+
+  /* Accents */
+  --color-honey: #e0b985;
+  --color-mist: #dce6ef;
+  --color-blush: #f0d9cb;
+
+  /* Fonts (wired in app/layout.tsx via next/font) */
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-poppins), system-ui, sans-serif;
+  --font-script: var(--font-dancing), cursive;
+
+  /* Type scale (style guide 7.png) */
+  --text-caption: 0.75rem;     /* 12 */
+  --text-small: 0.875rem;      /* 14 */
+  --text-body: 1rem;           /* 16 */
+  --text-body-lg: 1.125rem;    /* 18 */
+  --text-h3: 1.75rem;          /* 28 */
+  --text-h3--line-height: 1.25;
+  --text-h2: 2.5rem;           /* 40 */
+  --text-h2--line-height: 1.15;
+  --text-h1: 3.5rem;           /* 56 */
+  --text-h1--line-height: 1.1;
+  --text-display: 4.5rem;      /* 72 — oversized hero */
+  --text-display--line-height: 1.05;
+}
+
+@layer base {
+  html {
+    scroll-behavior: auto; /* Lenis handles smooth scroll */
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--color-forest);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background-color: var(--color-lavender-soft);
+    color: var(--color-forest-deep);
+  }
+}
+
+/* Script accent helper (e.g. "from where you are") */
+.font-script {
+  font-family: var(--font-script);
+}
+
+/* Letter-spaced eyebrow labels seen across the mockups */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
