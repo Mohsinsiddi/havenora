@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/sections/PageHeader";
-import CTASection from "@/components/sections/CTASection";
-import InfoBar from "@/components/sections/InfoBar";
+import CtaStrip from "@/components/sections/CtaStrip";
 import { RevealGroup, RevealItem } from "@/components/animation/Reveal";
 import { Heart, People, Sun, Lotus, ArrowRight } from "@/components/ui/icons";
 import { services } from "@/lib/content";
@@ -48,8 +47,11 @@ export default function ServicesPage() {
         </RevealGroup>
       </section>
 
-      <InfoBar />
-      <CTASection />
+      <CtaStrip
+        title="Whatever you're facing,"
+        accent="you don't have to face it alone."
+        buttons={[{ label: "Book a session", href: "/contact", leaf: true }, { label: "How therapy helps", href: "/for-you", variant: "outline" }]}
+      />
     </>
   );
 }

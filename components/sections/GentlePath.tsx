@@ -48,8 +48,8 @@ export default function GentlePath() {
       <LeafBranch flip className="pointer-events-none absolute -left-12 top-24 hidden h-56 -rotate-[18deg] opacity-80 lg:block" />
 
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:gap-16">
-        {/* intro — left, sticky on desktop */}
-        <div className="lg:sticky lg:top-32 lg:self-start">
+        {/* intro — left */}
+        <div className="lg:self-start">
           <span className="eyebrow flex items-center gap-2 text-sage">
             <span className="h-px w-6 bg-sage/50" aria-hidden />
             How therapy works

@@ -124,13 +124,15 @@ export const approachSteps: { step: string; title: string; blurb: string }[] = [
   { step: "04", title: "Grow", blurb: "Build lasting tools and a life that feels like yours." },
 ];
 
-export const modalities: { abbr: string; name: string }[] = [
-  { abbr: "CBT", name: "Cognitive Behavioral" },
-  { abbr: "DBT", name: "Dialectical Behavior" },
-  { abbr: "EFT", name: "Emotion Focused" },
-  { abbr: "SFBT", name: "Solution Focused" },
-  { abbr: "ACT", name: "Acceptance & Commitment" },
-  { abbr: "MBT", name: "Mindfulness Based" },
+export const modalities: { abbr: string; name: string; description: string }[] = [
+  { abbr: "CBT", name: "Cognitive Behavioral", description: "Reframe unhelpful thought patterns and build practical, everyday coping skills." },
+  { abbr: "DBT", name: "Dialectical Behavior", description: "Balance acceptance and change with tools for emotion regulation and distress tolerance." },
+  { abbr: "EFT", name: "Emotion Focused", description: "Understand and gently transform difficult emotions to deepen connection with yourself and others." },
+  { abbr: "ACT", name: "Acceptance & Commitment", description: "Make room for hard feelings while committing to actions aligned with your values." },
+  { abbr: "IFS", name: "Internal Family Systems", description: "Meet and heal the different 'parts' of you with curiosity and compassion." },
+  { abbr: "SFBT", name: "Solution Focused", description: "Build on your existing strengths to move toward the future you want, step by step." },
+  { abbr: "Psychodynamic", name: "Insight-Oriented", description: "Explore how past experiences and patterns quietly shape your present." },
+  { abbr: "Trauma-Informed", name: "Safety-First Care", description: "Paced, grounded work that honors your nervous system and your story." },
 ];
 
 export const aboutValues: { title: string; blurb: string }[] = [

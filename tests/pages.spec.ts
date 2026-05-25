@@ -8,7 +8,6 @@ test("services page: header, four services, pricing, CTA", async ({ page }) => {
   for (const s of ["Individual Therapy", "Couples Therapy", "Teen Therapy", "Group Therapy"]) {
     await expect(page.getByRole("heading", { name: s, exact: true })).toBeVisible();
   }
-  await expect(page.getByText(/60 minutes · ₹1500/)).toBeVisible();
   // each card has a Learn more link → /contact
   const learn = page.getByRole("link", { name: /Learn more/ }).first();
   await expect(learn).toHaveAttribute("href", "/contact");
@@ -30,22 +29,12 @@ test("for-you page: gentle path steps + modalities", async ({ page }) => {
   }
 });
 
-test("voices page renders the flip-book journal", async ({ page }) => {
+test("voices page renders the carousel", async ({ page }) => {
   await page.goto("/voices");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Stories that");
-  // motion build → realistic book with cover + scroll hint
-  await expect(page.getByText("Scroll to turn the page")).toBeVisible();
-  await expect(page.getByText("A little book of letters")).toBeVisible();
-});
-
-test("voices accessible fallback lists every testimonial (reduced motion)", async ({ browser }) => {
-  const ctx = await browser.newContext({ reducedMotion: "reduce" });
-  const page = await ctx.newPage();
-  await page.goto("/voices");
-  for (const n of ["Aaratrika", "Ayesha", "Kabir", "Meera"]) {
-    await expect(page.getByText(`— ${n}`, { exact: true })).toBeVisible();
-  }
-  await ctx.close();
+  await expect(page.getByRole("button", { name: "Click to read more" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Next story" })).toBeVisible();
+  await expect(page.getByText("— Aaratrika", { exact: true })).toBeVisible();
 });
 
 test("about page: story + four values", async ({ page }) => {

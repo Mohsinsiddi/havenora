@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import GentlePath from "@/components/sections/GentlePath";
 import Modalities from "@/components/sections/Modalities";
-import CTASection from "@/components/sections/CTASection";
+import CtaStrip from "@/components/sections/CtaStrip";
 
 export const metadata: Metadata = {
   title: "For You — A gentle path",
@@ -13,8 +13,12 @@ export default function ForYouPage() {
   return (
     <>
       <GentlePath />
+      <CtaStrip
+        title="You don't have to figure it out alone."
+        accent="Let's take the next step — together."
+        buttons={[{ label: "Book your session", href: "/contact", leaf: true }, { label: "Explore services", href: "/services", variant: "outline" }]}
+      />
       <Modalities />
-      <CTASection />
     </>
   );
 }

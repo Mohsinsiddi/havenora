@@ -16,11 +16,13 @@ export default function Template({ children }: { children: React.ReactNode }) {
     window.__lenis?.scrollTo(0, { immediate: true });
   }, []);
 
+  // opacity-only fade: no transform on the page wrapper, so it never creates a
+  // containing block (keeps the fixed header stable) and adds no scroll repaint.
   return (
     <motion.div
-      initial={reduce ? false : { opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      initial={reduce ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
     >
       {children}
     </motion.div>

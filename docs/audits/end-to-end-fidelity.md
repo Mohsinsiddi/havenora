@@ -1,29 +1,32 @@
-# End-to-End Fidelity Audit (pre-deploy)
+# End-to-End Fidelity Audit (2026-05-25, re-run)
 
-**Date:** 2026-05-25 · **Status:** ✅ All pages match their mockups
+Strict re-audit of every page against the root `assets/` mockups, with the element map (`reference-element-map.md`) as the spec.
 
-Done at user's direction: "end-to-end website has to be the same first." Each route re-verified against its reference; two fixes applied this pass.
+## Divergences found → fixed
+| Page | Mockup | Was | Now |
+|---|---|---|---|
+| Home | `1.png` | matched | matched (unchanged) |
+| Services | `2.png` | extra pricing **InfoBar**; big CTA | **InfoBar removed**; **CtaStrip** "Whatever you're facing, you don't have to face it alone." |
+| For You | `3.png`+`6.png` | gentle path w/o photo; **6-chip** modalities | **room photo** in gentle path; per-page CtaStrip "You don't have to figure it out alone"; **full Modalities** — "Different paths / One goal" intro + image + "A thoughtful blend" + **8 cards with descriptions** |
+| Voices | `5.png` | flip-book | **carousel** — centre letter + side peeks + prev/next + dots + "Click to read more"; CtaStrip "Your story matters." |
+| CTA / Footer | `4.png` / `8.png` | matched | matched |
+| About/Contact/Privacy/Terms | — | system-designed | unchanged (no mockup) |
 
-## Fixes this pass
-1. **Home trimmed to match `1.png`** — removed the extra Services/Testimonials/CTA preview sections. Home is now exactly: hero → 4 value chips → info/pricing bar → footer ribbon. (`/tmp/fb_home.png`)
-2. **Voices letters rebuilt to match `5.png`** — each flip-book page is now an aged-paper letter with: lavender heart-sprig, **script headline** (first sentence) + body remainder, **signature**, a leaf sprig + **twine bow** on the left margin, ruling lines, stacked-paper backing. Side-by-side vs mockup: `/tmp/fb_cmp_letter.png`. Flip interaction + scroll-turn retained.
+## Cleanup ("remove old ones")
+- Deleted `Journal.tsx` (flip-book, replaced by Carousel) and `ValueChips.tsx` (unused).
+- Removed `react-pageflip` dependency.
+- New shared component `CtaStrip.tsx` (per-page light CTA). `LetterContent`/`TwineBow` re-homed in `Carousel.tsx`.
+- `grep -rn "assets" app components lib` → only doc-comments; no runtime refs. Site works after `assets/` is deleted.
 
-## Page-by-page match
-| Route | Mockup | Status |
-|---|---|---|
-| `/` Home | `1.png` | ✅ Exact scope (hero + chips + pricing) |
-| `/services` | `2.png` | ✅ 4 cards across + info bar + CTA |
-| `/for-you` | `3.png` + `6.png` | ✅ Two-column gentle path (drawn line) + modalities |
-| `/voices` | `5.png` | ✅ Aged-paper letters, realistic flip-book |
-| `/about` | `4.png` | ✅ Story + values, real photo |
-| `/contact` | — | ✅ On-brand form + booking embed |
-| Header / Footer | header in `1.png`, `8.png` | ✅ |
-| Tokens / type | `7.png` | ✅ |
+## Strict Playwright harness (new)
+- **`tests/fidelity.spec.ts`** — element-by-element presence + content + position (desktop photo right-half, 4 service cards in one row, 8 modality cards w/ descriptions, carousel arrows/dots/read-more + advances, per-page CtaStrip copy, no-overflow). Passes across mobile-360/390, tablet-768, desktop-1440/1920.
+- **`tests/visual.spec.ts`** — `toHaveScreenshot` baselines for 6 pages × {desktop-1440, mobile-390} = 12 snapshots in `tests/visual.spec.ts-snapshots/`; animations frozen, dynamic embed/carousel masked. Re-run green deterministically.
+- **`scripts/ref-montage.mjs`** — render-vs-reference montages → `docs/audits/montage-{home,services,for-you,voices}.png` for visual sign-off.
 
-## Validation
-- Full suite **54/54** @ desktop-1440 + mobile-390. `npm run build` clean (14 routes).
-- `assets/` untouched + no runtime references (site works after it's deleted).
-- Live dev server for manual verification: **http://localhost:3000**.
+## Results
+- **Full suite 84 passed** @ desktop-1440 + mobile-390; fidelity **green** @ all 7 breakpoints.
+- `npm run build` clean (14 routes). Visual baselines seeded + verified.
+- Montages reviewed: Services, For You, Voices now align element-for-element with their mockups.
 
-## Deferred
-- Vercel deploy (Milestone 9) — on hold per user. Site is deploy-ready (`npx vercel`; set `NEXT_PUBLIC_CAL_LINK`).
+## Update baselines after intentional design changes
+`npx playwright test tests/visual.spec.ts --update-snapshots`

@@ -43,7 +43,7 @@ export default function Parallax({
   }, [speed]);
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={className} style={{ willChange: "transform" }}>
       {children}
     </div>
   );

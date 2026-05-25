@@ -77,7 +77,7 @@ export default function Hero() {
       className="relative overflow-hidden pb-16 pt-32 sm:pt-36 lg:flex lg:min-h-[92vh] lg:items-center lg:pb-0"
     >
       {/* BIG merged half-screen image (lg+), zoomed via tall crop + feathered left */}
-      <div data-anim="visual" className="absolute inset-y-0 right-0 hidden w-1/2 lg:block xl:w-[52%]">
+      <div data-anim="visual" data-hero-photo className="absolute inset-y-0 right-0 hidden w-1/2 lg:block xl:w-[52%]">
         <Image
           src={PHOTO}
           alt={PHOTO_ALT}
