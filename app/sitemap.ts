@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
+import { getSiteUrl } from "@/lib/site-url";
 
-const base = "https://havenora.care";
+const base = getSiteUrl();
 const routes = ["", "/about", "/services", "/for-you", "/voices", "/contact", "/privacy", "/terms"];
 
 export default function sitemap(): MetadataRoute.Sitemap {

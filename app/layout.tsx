@@ -3,6 +3,7 @@ import { Playfair_Display, Poppins, Dancing_Script } from "next/font/google";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -26,7 +27,7 @@ const dancing = Dancing_Script({
   weight: ["400", "500", "600", "700"],
 });
 
-const siteUrl = "https://havenora.care";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
