@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Botanical from "@/components/brand/Botanical";
+import LeafBranch from "@/components/brand/LeafBranch";
 
 /**
  * Image panel. When `src` is given it renders a real photo (next/image,
@@ -17,6 +17,7 @@ export default function ImagePanel({
   rounded = "rounded-[2rem]",
   priority = false,
   feather = false,
+  zoom = false,
 }: {
   src?: string;
   alt?: string;
@@ -26,6 +27,8 @@ export default function ImagePanel({
   priority?: boolean;
   /** soft-fade edges so the photo merges into the background (hero look) */
   feather?: boolean;
+  /** scale the photo in for a closer, zoomed crop */
+  zoom?: boolean;
 }) {
   // feathered: filled image whose edges softly melt into the cream background
   // (used for the stacked mobile hero + About) — a gentle radial fade.
@@ -43,7 +46,7 @@ export default function ImagePanel({
             alt={alt}
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className={`object-cover ${feather ? featherMask : ""}`}
+            className={`object-cover object-center ${zoom ? "scale-125" : ""} ${feather ? featherMask : ""}`}
             priority={priority}
           />
           {/* gentle warm wash to blend the photo into the palette */}
@@ -52,9 +55,8 @@ export default function ImagePanel({
       ) : (
         <div className="absolute inset-0 bg-linear-to-br from-beige via-cream to-sage-light/50">
           <div className="absolute inset-0 bg-honey/15" />
-          <Botanical variant="frond" className="absolute -right-4 -top-3 h-2/3 w-auto opacity-30" />
-          <Botanical variant="branch" className="absolute -left-6 bottom-0 h-1/2 w-auto opacity-40" />
-          <Botanical variant="sprig" tone="lavender" className="absolute right-8 bottom-6 h-16 w-auto opacity-50" />
+          <LeafBranch className="absolute -left-6 -top-4 h-2/3 rotate-[12deg] opacity-60" />
+          <LeafBranch flip className="absolute -right-6 -bottom-4 h-1/2 rotate-[200deg] opacity-50" />
         </div>
       )}
     </div>

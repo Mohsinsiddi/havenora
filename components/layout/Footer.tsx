@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Logo from "@/components/brand/Logo";
 import HeartLeaf from "@/components/brand/HeartLeaf";
-import Botanical from "@/components/brand/Botanical";
+import LeafBranch from "@/components/brand/LeafBranch";
 import { Button } from "@/components/ui/Button";
 import { Instagram, Facebook, Heart } from "@/components/ui/icons";
 import { site, footerColumns, newsletter } from "@/lib/content";
@@ -27,12 +27,11 @@ export default function Footer() {
 
       {/* ---- upper (cream) ---- */}
       <div className="relative overflow-hidden bg-cream pb-14 pt-4">
-        <Botanical variant="branch" className="pointer-events-none absolute -right-6 top-6 hidden h-44 w-auto opacity-30 lg:block" />
-        <Botanical variant="sprig" tone="lavender" className="pointer-events-none absolute right-40 top-24 hidden h-16 w-auto opacity-40 xl:block" />
+        <LeafBranch flip className="pointer-events-none absolute -right-10 -top-2 hidden h-56 rotate-[8deg] opacity-80 lg:block" />
 
         <div className="relative mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[1.3fr_2fr] lg:gap-16">
           {/* brand block + newsletter (left) */}
-          <div>
+          <div className="min-w-0">
             <Logo
               variant="stacked"
               withTagline
@@ -62,7 +61,7 @@ export default function Footer() {
                   type="email"
                   required
                   placeholder="Your email"
-                  className="h-11 flex-1 rounded-full border border-sage-light/60 bg-ivory px-4 text-small text-ink outline-none focus:border-lavender"
+                  className="h-11 w-full min-w-0 flex-1 rounded-full border border-sage-light/60 bg-ivory px-4 text-small text-ink outline-none focus:border-lavender"
                 />
                 <Button type="submit" size="md">Subscribe</Button>
               </form>
@@ -70,14 +69,14 @@ export default function Footer() {
           </div>
 
           {/* link columns (right) — 2-col on mobile, 4-col from sm up */}
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div className="grid min-w-0 grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
             {footerColumns.map((col) => (
               <div key={col.title}>
                 <h3 className="eyebrow text-sage">{col.title}</h3>
                 <ul className="mt-4 space-y-2.5">
                   {col.links.map((l) => (
                     <li key={l.label}>
-                      <Link href={l.href} className="text-small text-ink/75 transition-colors hover:text-lavender">
+                      <Link href={l.href} className="text-small break-words text-ink/75 transition-colors hover:text-lavender">
                         {l.label}
                       </Link>
                     </li>
@@ -101,9 +100,8 @@ export default function Footer() {
 
       {/* ---- lower (forest) ribbon band ---- */}
       <div className="relative overflow-hidden bg-forest-deep text-ivory">
-        <Botanical variant="branch" flip className="pointer-events-none absolute -left-6 top-1/2 hidden h-24 w-auto -translate-y-1/2 opacity-30 sm:block" />
-        <Botanical variant="sprig" tone="lavender" className="pointer-events-none absolute left-44 bottom-2 hidden h-14 w-auto opacity-25 lg:block" />
-        <Botanical variant="branch" className="pointer-events-none absolute -right-6 top-1/2 hidden h-24 w-auto -translate-y-1/2 opacity-30 sm:block" />
+        <LeafBranch className="pointer-events-none absolute -left-8 top-1/2 hidden h-32 -translate-y-1/2 rotate-[18deg] opacity-50 sm:block" />
+        <LeafBranch flip className="pointer-events-none absolute -right-8 top-1/2 hidden h-32 -translate-y-1/2 -rotate-[18deg] opacity-50 sm:block" />
 
         <div className="relative mx-auto max-w-7xl px-5 py-7 sm:px-8">
           <p className="flex items-center justify-center gap-3 text-center font-script text-2xl text-ivory/90">

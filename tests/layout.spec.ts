@@ -75,8 +75,26 @@ test("footer has all columns, newsletter and the ribbon", async ({ page }) => {
   await expect(footer.getByText(/All rights reserved/)).toBeVisible();
 });
 
+test("footer content is not clipped at very narrow widths", async ({ page }) => {
+  // overflow-hidden can hide clipped content from scrollWidth — check element edges directly
+  for (const w of [320, 360]) {
+    await page.setViewportSize({ width: w, height: 900 });
+    await page.goto("/");
+    const overflowing = await page.evaluate(() => {
+      const vw = document.documentElement.clientWidth;
+      const bad: string[] = [];
+      document.querySelectorAll("footer *").forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.width > 0 && r.right > vw + 1) bad.push(el.tagName);
+      });
+      return bad.length;
+    });
+    expect(overflowing, `footer clipped @${w}px`).toBe(0);
+  }
+});
+
 test("no horizontal overflow at any breakpoint", async ({ page }) => {
-  for (const w of [360, 390, 768, 834, 1280, 1440, 1920]) {
+  for (const w of [320, 360, 390, 768, 834, 1280, 1440, 1920]) {
     await page.setViewportSize({ width: w, height: 900 });
     await page.goto("/");
     const overflow = await page.evaluate(

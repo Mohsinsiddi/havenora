@@ -1,6 +1,6 @@
 import { Reveal } from "@/components/animation/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
-import Botanical from "@/components/brand/Botanical";
+import LeafBranch from "@/components/brand/LeafBranch";
 import HeartLeaf from "@/components/brand/HeartLeaf";
 import { LeafSpark, ArrowRight } from "@/components/ui/icons";
 
@@ -9,8 +9,8 @@ export default function CTASection() {
     <section className="px-5 py-12 sm:px-8">
       <Reveal className="mx-auto max-w-6xl">
         <div className="relative overflow-hidden rounded-[2.5rem] bg-forest-deep px-6 py-16 text-center text-ivory sm:px-12 sm:py-20">
-          <Botanical variant="branch" className="pointer-events-none absolute -left-6 -top-4 h-40 w-auto opacity-25" />
-          <Botanical variant="frond" flip className="pointer-events-none absolute -right-4 bottom-0 h-52 w-auto opacity-20" />
+          <LeafBranch className="pointer-events-none absolute -left-10 -top-6 h-48 rotate-[15deg] opacity-55" />
+          <LeafBranch flip className="pointer-events-none absolute -right-10 -bottom-8 h-52 rotate-[195deg] opacity-55" />
 
           <HeartLeaf className="mx-auto h-9 w-auto opacity-90" />
           <h2 className="mx-auto mt-5 max-w-2xl font-display text-h2 text-ivory">

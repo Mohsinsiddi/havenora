@@ -3,7 +3,7 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
 import HTMLFlipBook from "react-pageflip";
 import { ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
-import Botanical from "@/components/brand/Botanical";
+import LeafBranch from "@/components/brand/LeafBranch";
 import HeartLeaf from "@/components/brand/HeartLeaf";
 import { testimonials } from "@/lib/content";
 
@@ -39,7 +39,7 @@ function LetterContent({ t }: { t: T }) {
       <div className="pointer-events-none absolute inset-0 rounded-sm shadow-[inset_0_0_60px_rgba(120,100,60,0.18)]" />
 
       {/* olive sprig laid on the left margin + twine tied around it */}
-      <Botanical variant="frond" className="pointer-events-none absolute -left-2 top-1/2 h-40 w-auto -translate-y-1/2 opacity-80" />
+      <LeafBranch variant="leaf" className="pointer-events-none absolute -left-3 top-1/2 h-28 -translate-y-1/2 opacity-90" />
       <TwineBow className="pointer-events-none absolute left-1.5 top-1/2 h-6 w-10 -translate-y-1/2" />
 
       {/* lavender heart-sprig */}
@@ -73,7 +73,7 @@ const CoverPage = forwardRef<HTMLDivElement, Record<string, never>>(function Cov
   return (
     <div ref={ref} data-density="hard" className="overflow-hidden rounded-sm ring-1 ring-forest/30">
       <div className="relative flex h-full w-full flex-col items-center justify-center bg-forest-deep p-10 text-center text-ivory">
-        <Botanical variant="branch" className="pointer-events-none absolute -left-4 top-6 h-32 w-auto opacity-30" />
+        <LeafBranch flip className="pointer-events-none absolute -left-6 top-2 h-32 rotate-[12deg] opacity-50" />
         <HeartLeaf className="h-9 w-auto text-ivory/90" />
         <p className="mt-4 eyebrow text-ivory/70">Voices of Healing</p>
         <h3 className="mt-2 font-display text-h2 text-ivory">A little book of letters</h3>
@@ -132,8 +132,8 @@ export default function Journal() {
   return (
     <section ref={trackRef} style={{ height: `${Math.max(320, pageCount * 60)}vh` }} className="relative">
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden px-5">
-        <Botanical variant="branch" className="pointer-events-none absolute -left-6 top-16 hidden h-44 w-auto opacity-25 lg:block" />
-        <Botanical variant="frond" flip className="pointer-events-none absolute -right-4 bottom-10 hidden h-56 w-auto opacity-20 lg:block" />
+        <LeafBranch flip className="pointer-events-none absolute -left-10 top-10 hidden h-56 -rotate-[16deg] opacity-60 lg:block" />
+        <LeafBranch className="pointer-events-none absolute -right-10 bottom-6 hidden h-56 rotate-[200deg] opacity-60 lg:block" />
         <p className="mb-6 font-script text-2xl text-lavender">Scroll to turn the page</p>
 
         {/* stacked-paper shadow behind the book for a "pile of letters" feel */}

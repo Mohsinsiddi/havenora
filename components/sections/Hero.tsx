@@ -5,7 +5,7 @@ import Image from "next/image";
 import { gsap, prefersReducedMotion } from "@/lib/gsap";
 import { ButtonLink } from "@/components/ui/Button";
 import ImagePanel from "@/components/ui/ImagePanel";
-import Botanical from "@/components/brand/Botanical";
+import LeafBranch from "@/components/brand/LeafBranch";
 import Parallax from "@/components/animation/Parallax";
 import { LeafSpark, ArrowRight, Heart, Leaf, Lotus, Sun } from "@/components/ui/icons";
 import { hero, valueProps } from "@/lib/content";
@@ -19,10 +19,10 @@ function OvalCard({ className = "", compact = false }: { className?: string; com
   return (
     <div
       data-anim="quote"
-      className={`z-20 flex flex-col items-center justify-center gap-1 rounded-full bg-linear-to-b from-[#e0d8ec] to-[#d2c9e3] text-center shadow-xl backdrop-blur-sm ${
-        compact ? "w-32 px-4 py-6" : "w-36 px-5 py-7"
+      className={`z-20 flex flex-col items-center justify-center gap-0.5 rounded-full bg-linear-to-b from-[#e0d8ec] to-[#d2c9e3] text-center shadow-xl backdrop-blur-sm ${
+        compact ? "w-28 px-3.5 py-5" : "w-36 px-5 py-7"
       } ${className}`}
-      style={{ minHeight: compact ? "12.5rem" : "15rem" }}
+      style={{ minHeight: compact ? "10.5rem" : "15rem" }}
     >
       <Heart className="text-sm text-lavender" />
       <p className="font-display text-sm leading-snug text-forest-deep">{hero.quote.lead}</p>
@@ -89,26 +89,23 @@ export default function Hero() {
         <div className="pointer-events-none absolute inset-0 bg-linear-to-r from-cream/80 via-transparent to-transparent" />
       </div>
 
-      {/* ambient parallax botanicals — consistent lush branches + lavender sprig */}
-      <Parallax speed={0.16} className="pointer-events-none absolute -left-12 top-20 hidden blur-[0.4px] md:block">
-        <Botanical variant="branch" className="h-44 w-auto opacity-55" />
-      </Parallax>
-      <Parallax speed={0.3} className="pointer-events-none absolute left-4 top-72 hidden blur-[0.4px] xl:block">
-        <Botanical variant="sprig" tone="lavender" className="h-24 w-auto opacity-55" />
+      {/* watercolor leaf branches (extracted from the reference art) */}
+      <Parallax speed={0.16} className="pointer-events-none absolute -left-16 -top-4 hidden w-44 -rotate-[18deg] md:block">
+        <LeafBranch flip className="h-72" />
       </Parallax>
       {/* prominent branch draping over the top of the image */}
-      <Parallax speed={-0.12} className="pointer-events-none absolute right-2 top-4 z-10 hidden rotate-12 blur-[0.4px] lg:block">
-        <Botanical variant="branch" flip className="h-60 w-auto opacity-70" />
+      <Parallax speed={-0.12} className="pointer-events-none absolute -right-6 -top-8 z-10 hidden w-48 rotate-[170deg] lg:block">
+        <LeafBranch className="h-80" />
       </Parallax>
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col px-5 sm:px-8">
         {/* copy */}
         <div className="max-w-xl">
           <span
             data-anim="eyebrow"
             className="eyebrow inline-flex items-center gap-2 rounded-full border border-sage/40 bg-cream/60 px-4 py-2 text-sage backdrop-blur-sm"
           >
-            <Botanical variant="leaf" className="h-3 w-auto" />
+            <LeafBranch variant="leaf" className="h-4" />
             {hero.eyebrow}
           </span>
 
@@ -137,42 +134,46 @@ export default function Hero() {
               </ButtonLink>
             </span>
           </div>
-
-          {/* value pillars — 2×2 on mobile, 4-across with dotted dividers from sm up */}
-          <div data-anim="cta" className="mt-10 grid max-w-lg grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4 sm:gap-y-0">
-            {valueProps.map((v, i) => {
-              const Icon = VALUE_ICONS[v.icon];
-              const lav = i % 2 === 0;
-              return (
-                <div
-                  key={v.title}
-                  className="flex flex-col items-center gap-2 px-1 text-center sm:[&:not(:first-child)]:border-l sm:[&:not(:first-child)]:border-dashed sm:[&:not(:first-child)]:border-sage/40"
-                >
-                  <span
-                    className={`grid h-13 w-13 place-items-center rounded-full text-xl ${
-                      lav ? "bg-lavender-soft/40 text-lavender" : "bg-sage-light/45 text-forest"
-                    }`}
-                  >
-                    <Icon />
-                  </span>
-                  <span className="text-small font-medium leading-tight text-forest">{v.title}</span>
-                </div>
-              );
-            })}
-          </div>
         </div>
 
-        {/* mobile / tablet: image + card stacked below the copy */}
-        <div className="relative mt-12 lg:hidden">
+        {/* mobile / tablet: full-bleed merged image (edge-to-edge, no card) */}
+        <div className="relative order-2 -mx-5 mt-8 sm:-mx-8 lg:hidden">
           <ImagePanel
             src={PHOTO}
             alt={PHOTO_ALT}
             label="hero-room"
             priority
             feather
-            className="aspect-5/4 w-full"
+            zoom
+            rounded="rounded-none"
+            className="aspect-4/3 w-full"
           />
-          <OvalCard compact className="absolute -left-1 top-5" />
+        </div>
+
+        {/* value pillars — after image on mobile, below buttons on desktop */}
+        <div
+          data-anim="cta"
+          className="order-3 mt-10 grid max-w-lg grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4 sm:gap-y-0 lg:order-none"
+        >
+          {valueProps.map((v, i) => {
+            const Icon = VALUE_ICONS[v.icon];
+            const lav = i % 2 === 0;
+            return (
+              <div
+                key={v.title}
+                className="flex flex-col items-center gap-2 px-1 text-center sm:[&:not(:first-child)]:border-l sm:[&:not(:first-child)]:border-dashed sm:[&:not(:first-child)]:border-sage/40"
+              >
+                <span
+                  className={`grid h-13 w-13 place-items-center rounded-full text-xl ${
+                    lav ? "bg-lavender-soft/40 text-lavender" : "bg-sage-light/45 text-forest"
+                  }`}
+                >
+                  <Icon />
+                </span>
+                <span className="text-small font-medium leading-tight text-forest">{v.title}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
 

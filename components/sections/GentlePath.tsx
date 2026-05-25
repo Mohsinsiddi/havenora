@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
 import { ButtonLink } from "@/components/ui/Button";
-import Botanical from "@/components/brand/Botanical";
+import LeafBranch from "@/components/brand/LeafBranch";
 import { Heart, People, Leaf, Sun, ArrowRight } from "@/components/ui/icons";
 import { approachSteps } from "@/lib/content";
 
@@ -45,7 +45,7 @@ export default function GentlePath() {
 
   return (
     <section className="relative overflow-x-clip px-5 pt-32 pb-12 sm:px-8 sm:pt-40">
-      <Botanical variant="branch" className="pointer-events-none absolute -left-8 top-28 hidden h-40 w-auto opacity-35 lg:block" />
+      <LeafBranch flip className="pointer-events-none absolute -left-12 top-24 hidden h-56 -rotate-[18deg] opacity-80 lg:block" />
 
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2 lg:gap-16">
         {/* intro — left, sticky on desktop */}

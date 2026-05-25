@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/animation/Reveal";
-import Botanical from "@/components/brand/Botanical";
+import LeafBranch from "@/components/brand/LeafBranch";
 
 /**
  * Inner-page hero header — eyebrow + display title + Dancing Script accent +
@@ -19,9 +19,8 @@ export default function PageHeader({
 }) {
   return (
     <section className="relative overflow-hidden px-5 pb-10 pt-32 text-center sm:px-8 sm:pt-40">
-      <Botanical variant="branch" className="pointer-events-none absolute -left-8 top-28 hidden h-40 w-auto opacity-40 md:block" />
-      <Botanical variant="frond" flip className="pointer-events-none absolute -right-4 top-24 hidden h-56 w-auto opacity-20 lg:block" />
-      <Botanical variant="sprig" tone="lavender" className="pointer-events-none absolute right-16 top-44 hidden h-16 w-auto opacity-40 xl:block" />
+      <LeafBranch flip className="pointer-events-none absolute -left-12 top-20 hidden h-56 -rotate-[18deg] opacity-90 md:block" />
+      <LeafBranch className="pointer-events-none absolute -right-12 top-16 hidden h-64 rotate-[170deg] opacity-90 lg:block" />
 
       <Reveal className="mx-auto flex max-w-3xl flex-col items-center">
         <span className="eyebrow mb-4 flex items-center gap-2 text-sage">

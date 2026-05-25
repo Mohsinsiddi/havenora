@@ -1,12 +1,12 @@
 import SectionHeading from "@/components/ui/SectionHeading";
 import { RevealGroup, RevealItem } from "@/components/animation/Reveal";
-import Botanical from "@/components/brand/Botanical";
+import LeafBranch from "@/components/brand/LeafBranch";
 import { modalities } from "@/lib/content";
 
 export default function Modalities() {
   return (
     <section id="approaches" className="relative overflow-hidden bg-ivory/60 px-5 py-20 sm:px-8 sm:py-28">
-      <Botanical variant="sprig" tone="lavender" className="pointer-events-none absolute right-10 top-12 hidden h-20 w-auto opacity-50 lg:block" />
+      <LeafBranch flip className="pointer-events-none absolute -right-10 top-6 hidden h-48 rotate-[8deg] opacity-70 lg:block" />
 
       <SectionHeading eyebrow="Therapeutic Modalities" title="A thoughtful blend" accent="of approaches.">
         I integrate a range of evidence-based modalities to support your unique needs, goals and pace —

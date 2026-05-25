@@ -4,7 +4,7 @@ import ContactForm from "@/components/sections/ContactForm";
 import BookingEmbed from "@/components/sections/BookingEmbed";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/animation/Reveal";
-import Botanical from "@/components/brand/Botanical";
+import LeafBranch from "@/components/brand/LeafBranch";
 import { Laptop, Heart, LeafSpark } from "@/components/ui/icons";
 import { site } from "@/lib/content";
 
@@ -31,7 +31,7 @@ export default function ContactPage() {
           {/* info */}
           <Reveal direction="left" className="relative">
             <div className="relative overflow-hidden rounded-3xl bg-forest-deep p-8 text-ivory">
-              <Botanical variant="frond" flip className="pointer-events-none absolute -right-4 -top-2 h-44 w-auto opacity-20" />
+              <LeafBranch flip className="pointer-events-none absolute -right-8 -top-4 h-44 rotate-[195deg] opacity-45" />
               <h2 className="font-display text-h3 text-ivory">A space that meets you</h2>
               <p className="mt-2 text-small text-ivory/75">However you prefer to connect, we&apos;re here.</p>
 
